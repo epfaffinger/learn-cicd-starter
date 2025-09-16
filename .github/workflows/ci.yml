@@ -28,5 +28,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
 
-      - name: Run Tests
+      - name: Run Some Tests
         run: go test ./...
