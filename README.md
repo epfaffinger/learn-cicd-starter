@@ -6,7 +6,7 @@ This repo contains the starter code for the "Notely" application for the "Learn 
 
 Make sure you're on Go version 1.22+.
 
-!(https://github.com/epfaffinger/learn-cicd-starter/actions/workflows/ci.yml/badge.svg)
+![Test Status: ](https://github.com/epfaffinger/learn-cicd-starter/actions/workflows/ci.yml/badge.svg)
 
 Create a `.env` file in the root of the project with the following contents:
 
