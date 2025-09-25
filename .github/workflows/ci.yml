@@ -58,3 +58,8 @@ jobs:
  
       - name: Check for Formatting Issues
         run: test -z "$(go fmt ./...)"
+
+      - name: Staticcheck
+        uses: dominikh/staticcheck-action@v1
+        with:
+          version: latest
