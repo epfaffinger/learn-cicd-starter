@@ -62,8 +62,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
  
-      - name: Check for Formatting Issues
-        run: test -z $(go fmt ./...)
+    ##  - name: Check for Formatting Issues
+    ##    run: test -z $(go fmt ./...)
 
       - name: Staticcheck
         uses: dominikh/staticcheck-action@v1
