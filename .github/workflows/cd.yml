@@ -46,7 +46,7 @@ jobs:
           echo "Scheme: ${DATABASE_URL%%://*}://********@${DATABASE_URL#*@}" || true
 
       - name: Migrate DB
-        run: goose -dir ./sql/schema postgres "$DATABASE_URL" up
+        run: goose -dir ./sql/schema postgres "postgresql://neondb_owner:npg_zQDMlaL2qfP0@ep-weathered-block-aetj5lsw-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require" up
 
       - name: Deploy to Cloud Run
         run: gcloud run deploy notely --image us-central1-docker.pkg.dev/elevated-watch-473719-n1/notely-ar-repo/notely:latest --region us-central1 --allow-unauthenticated --project elevated-watch-473719-n1 --max-instances=4
