@@ -16,13 +16,15 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Install goose
-        run: go install github.com/pressly/goose/v3/cmd/goose@latest
-
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
           go-version: "1.22.5"
+
+      - name: Install goose
+        run: |
+          go install github.com/pressly/goose/v3/cmd/goose@latest
+          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
 
       - name: Build App
         run: ./scripts/buildprod.sh
@@ -37,6 +39,11 @@ jobs:
 
       - name: Build GCP Image
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/elevated-watch-473719-n1/notely-ar-repo/notely:latest .
+
+      - name: Debug DB URL presence
+        run: |
+          test -n "$DATABASE_URL" || (echo "DATABASE_URL missing" && exit 1)
+          echo "Scheme: ${DATABASE_URL%%://*}://********@${DATABASE_URL#*@}" || true
 
       - name: Migrate DB
         run: goose -dir ./sql/schema postgres "$DATABASE_URL" up
